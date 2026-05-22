@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shyam Vihar PropTech</title>
+    <style>
+        body { margin: 0; padding: 0; font-family: sans-serif; overflow: hidden; }
+        #map-container { height: 100vh; width: 100%; position: relative; }
+        iframe { width: 100%; height: 100%; border: none; }
+        
+        .top-deal-btn { position: absolute; top: 20px; left: 20px; z-index: 1000; background: #e11d48; color: white; padding: 15px 30px; border: none; border-radius: 50px; font-weight: bold; cursor: pointer; box-shadow: 0 4px 10px rgba(0,0,0,0.3); }
+        .switch-view-btn { position: absolute; top: 20px; right: 20px; z-index: 1000; background: #2563eb; color: white; padding: 10px 20px; border: none; border-radius: 8px; font-weight: bold; cursor: pointer; }
+
+        /* Modal Overlay */
+        .modal-overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.8); z-index: 2000; align-items: center; justify-content: center; backdrop-filter: blur(5px); }
+        .modal-content { background: white; width: 90%; max-width: 800px; height: 90vh; border-radius: 20px; padding: 20px; position: relative; display: flex; flex-direction: column; }
+        
+        /* Contact Bar */
+        .contact-bar { position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%); display: flex; gap: 15px; z-index: 1000; }
+        .contact-btn { padding: 12px 25px; border-radius: 50px; text-decoration: none; font-weight: bold; color: white; box-shadow: 0 4px 6px rgba(0,0,0,0.2); }
+    </style>
+</head>
+<body>
+
+    <div id="map-container">
+        <iframe id="mapFrame" src="https://www.google.com/maps/embed?pb=!1m17!1m12!1m3!1d3559.851!2d75.1864094!3d27.6281631!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m2!1m1!2zMjfCsDM3JzQxLjQiTiA3NcKwMTEnMTEuMSJF!5e0!3m2!1sen!2sin!4v1716355600000!5m2!1sen!2sin" allowfullscreen="" loading="lazy"></iframe>
+        
+        <button class="top-deal-btn" onclick="openDealModal()">🎁 View Today's Offer</button>
+        <button class="switch-view-btn" onclick="toggleSatellite()">🛰️ Toggle View</button>
+
+        <div class="contact-bar">
+            <a href="https://wa.me/918505086767?text=Hello,%20I%20am%20interested%20in%20Shyam%20Vihar" target="_blank" class="contact-btn" style="background: #25d366;">WhatsApp</a>
+            <a href="tel:+918505086767" class="contact-btn" style="background: #0ea5e9;">Call Now</a>
+        </div>
+    </div>
+
+    <!-- Deal & PDF Interface (Ek hi Modal) -->
+    <div class="modal-overlay" id="dealModal">
+        <div class="modal-content">
+            <h2 style="margin: 0; color: #e11d48; text-align: center;">Project Shyam Vihar</h2>
+            <p style="text-align: center; margin: 5px 0;">Naksha aur Details</p>
+            
+            <!-- Yahan PDF display hogi -->
+            <iframe src="shyam_vihar.pdf" style="width: 100%; height: 60vh; border: 2px solid #eee; border-radius: 10px;"></iframe>
+            
+            <button onclick="closeDealModal()" style="width: 100%; padding: 15px; background: #e11d48; color: white; border: none; border-radius: 8px; font-weight: bold; cursor: pointer; margin-top: 15px;">
+                ← Back to Map
+            </button>
+        </div>
+    </div>
+
+    <script>
+        function openDealModal() { document.getElementById('dealModal').style.display = 'flex'; }
+        function closeDealModal() { document.getElementById('dealModal').style.display = 'none'; }
+        
+        let normalMap = "https://www.google.com/maps/embed?pb=!1m17!1m12!1m3!1d3559.851!2d75.1864094!3d27.6281631!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m2!1m1!2zMjfCsDM3JzQxLjQiTiA3NcKwMTEnMTEuMSJF!5e0!3m2!1sen!2sin!4v1716355600000!5m2!1sen!2sin";
+        let satMap = "https://www.google.com/maps/embed?pb=!1m17!1m12!1m3!1d3559.851!2d75.1864094!3d27.6281631!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m2!1m1!2zMjfCsDM3JzQxLjQiTiA3NcKwMTEnMTEuMSJF!5e1!3m2!1sen!2sin!4v1716355600000!5m2!1sen!2sin";
+
+        function toggleSatellite() {
+            let iframe = document.getElementById('mapFrame');
+            iframe.src = (iframe.src === normalMap) ? satMap : normalMap;
+        }
+    </script>
+</body>
+</html>
